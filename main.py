@@ -1,6 +1,18 @@
 import random #hint
 from blackjack_art import logo #Game logo
+#Create  a deck of cards
+def deck():
+   cards = [2,3,4,5,6,7,8,9,10,"Ace","Jack","King","Queen"]
+   category = ["Spade","Heart","Diamond","Clubs"]
+   pile = []
 
+   for card in cards:
+      for i in category:
+         pile.append((card,i))
+
+   print(len(pile))
+
+deck()
 
 def main():
     """
