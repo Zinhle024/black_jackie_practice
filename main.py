@@ -20,15 +20,26 @@ def deal():
    random.shuffle(pile)
 
    player1 = []
-   player2 = []
+   computor = []
 
    for i in range(8):
       player1.append(pile.pop())
-      player2.append(pile.pop())
+      computor.append(pile.pop())
 
-   return player1
+   return f"Player1 = {player1} \n\nComputor = {computor}"
 
-print(deal())
+def hand_value(hand):
+   value = 0
+   for i in hand:
+      if i[1] == "Ace":
+         value += 1
+      elif type(i[1]) == str:
+         value += 10
+      if type(i[1]) == int:
+         value += i[1]
+   return value
+
+print(hand_value([('♠️', 'Ace'), ('♠️', 'Queen'), ('♣️', 'Ace'), ('♥️ ', 4), ('♥️ ', 'King'), ('♠️', 'King'), ('♥️ ', 2), ('♣️', 4)]))
 
 
 def main():
