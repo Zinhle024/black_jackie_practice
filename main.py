@@ -3,16 +3,33 @@ from blackjack_art import logo #Game logo
 #Create  a deck of cards
 def deck():
    cards = [2,3,4,5,6,7,8,9,10,"Ace","Jack","King","Queen"]
-   category = ["Spade","Heart","Diamond","Clubs"]
+   category = ["♠️","♥️ ","♦️","♣️"]
    pile = []
 
    for card in cards:
       for i in category:
-         pile.append((card,i))
+         pile.append((i,card))
 
-   print(len(pile))
+   return pile
 
-deck()
+pile = deck()
+# print(pile)
+def deal():
+   random.shuffle(pile)
+   random.shuffle(pile)
+   random.shuffle(pile)
+
+   player1 = []
+   player2 = []
+
+   for i in range(8):
+      player1.append(pile.pop())
+      player2.append(pile.pop())
+
+   return player1
+
+print(deal())
+
 
 def main():
     """
