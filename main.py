@@ -10,9 +10,17 @@ def deck():
       for i in category:
          pile.append((card,i))
 
-   print(len(pile))
+   random.shuffle(pile)
+   random.shuffle(pile)
+   random.shuffle(pile)
+   print(pile)
 
 deck()
+
+
+def players(num_of_players):
+   for i in range(num_of_players+1):
+      
 
 def main():
     """
