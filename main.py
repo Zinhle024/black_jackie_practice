@@ -3,17 +3,14 @@ from blackjack_art import logo #Game logo
 #Create  a deck of cards
 def deck():
    cards = [2,3,4,5,6,7,8,9,10,"Ace","Jack","King","Queen"]
-   category = ["Spade","Heart","Diamond","Clubs"]
+   category = ["♠️","♥️ ","♦️","♣️"]
    pile = []
 
    for card in cards:
       for i in category:
          pile.append((card,i))
 
-   random.shuffle(pile)
-   random.shuffle(pile)
-   random.shuffle(pile)
-   print(pile)
+   print(len(pile))
 
 deck()
 
