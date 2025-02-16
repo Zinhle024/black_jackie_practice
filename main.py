@@ -23,23 +23,44 @@ def deal():
    player1 = []
    computor = []
 
-   for i in range(8):
+   for i in range(2):
       player1.append(pile.pop())
       computor.append(pile.pop())
+      
 
-   return f"Player1 = {player1} \n\nComputor = {computor}"
-print(deal())
+   print(f"Player1 = {player1} \n\nComputor = {computor}\n \n deck = {pile}")
+   return player1,computor
+
+players = deal()
+player1 = players[0]
+computor = players[1]
+
 
 
 def hand_value(hand):
    value = 0
    for i in hand:
-      # if i[1] == "Ace":
-      #    value += 1
-      if type(i[1]) == str:
+      if type(i[0]) == str and i[0] != "Ace":
          value += 10
-      elif type(i[1]) == int:
-         value += i[1]
+      elif type(i[0]) == int:
+         value += i[0]
+   return value
+
+def play(p1,com):
+   P1_choice = input("Player1 - Hit or Stand? ")
+   if P1_choice.lower().strip() == "hit":
+      p1.append(pile.pop())
+
+   if P1_choice.lower().strip() == "stand":
+      return hand_value(p1)
+   
+   if hand_value(p1) < 21:
+      P1_choice = input("Player1 - Hit or stand? ")
+      
+   return p1
+print(play(player1,computor))
+
+
 
 
 def main():
