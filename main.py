@@ -28,7 +28,7 @@ def deal():
       computor.append(pile.pop())
       
 
-   print(f"Player1 = {player1} \n\nComputor = {computor}\n \n deck = {pile}")
+   print(f"Player1 = {player1} \n\nComputor = {computor}\n")
    return player1,computor
 
 players = deal()
@@ -47,17 +47,22 @@ def hand_value(hand):
    return value
 
 def play(p1,com):
-   P1_choice = input("Player1 - Hit or Stand? ")
-   if P1_choice.lower().strip() == "hit":
-      p1.append(pile.pop())
-
-   if P1_choice.lower().strip() == "stand":
-      return hand_value(p1)
+   if hand_value(p1) > 21 or hand_value(com)> 21:
+      True
+   while True:
+      P1_choice = input("Player1 - Hit or Stand? ")
+      if P1_choice.lower().strip() == "hit":
+         p1.append(pile.pop())
    
-   if hand_value(p1) < 21:
-      P1_choice = input("Player1 - Hit or stand? ")
-      
-   return p1
+      if P1_choice.lower().strip() == "stand":
+
+         return hand_value(p1)
+   
+      print(hand_value(p1))
+      if hand_value(p1) < 21:
+         P1_choice = input("Player1 - Hit or Stand? ")
+         
+      return p1
 print(play(player1,computor))
 
 
