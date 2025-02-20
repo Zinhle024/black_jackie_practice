@@ -47,8 +47,6 @@ def hand_value(hand):
    return value
 
 def play(p1,com):
-   if hand_value(p1) > 21 or hand_value(com)> 21:
-      True
    while True:
       P1_choice = input("Player1 - Hit or Stand? ")
       if P1_choice.lower().strip() == "hit":
@@ -58,6 +56,8 @@ def play(p1,com):
 
          return hand_value(p1)
    
+      if hand_value(p1) > 21 or hand_value(com)> 21:
+         break
       print(hand_value(p1))
       if hand_value(p1) < 21:
          P1_choice = input("Player1 - Hit or Stand? ")
