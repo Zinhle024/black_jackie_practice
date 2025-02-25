@@ -48,26 +48,37 @@ def hand_value(hand):
 
 def play(p1,com):
    while True:
+
       P1_choice = input("Player1 - Hit or Stand? ")
-      if P1_choice.lower().strip() == "hit":
-         p1.append(pile.pop())
+
+      if hand_value(com) < 17:
+         com.append(pile.pop())
+
+      if hand_value(p1) < 21:
+         if P1_choice.lower().strip() == "hit":
+            p1.append(pile.pop())
    
       if P1_choice.lower().strip() == "stand":
-
-         return hand_value(p1)
-   
-      if hand_value(p1) > 21 or hand_value(com)> 21:
+         print(f"\nYour hand value is {hand_value(p1)}\n")
          break
-      print(hand_value(p1))
-      if hand_value(p1) < 21:
-         P1_choice = input("Player1 - Hit or Stand? ")
-         
-      return p1
-print(play(player1,computor))
+   
+      if hand_value(p1) > 21:
+         print("You bust!")
+         break
+
+      print(f"Your current hand value is {hand_value(p1)}")
+
+   return (f"Player1 = {p1},Computor = {com}")
+
+plays = play(player1,computor)
+   
+print(plays)
 
 
-
-
+def winner(player,computor):
+   if hand_value(player) > hand_value(computor):
+      print(f"")
+   
 def main():
     """
 TODO: Blackjack Game Implementation
