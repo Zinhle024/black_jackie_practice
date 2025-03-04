@@ -14,7 +14,6 @@ def deck():
 
 pile = deck()
 
-
 def deal():
    random.shuffle(pile)
    random.shuffle(pile)
@@ -46,39 +45,70 @@ def hand_value(hand):
          value += i[0]
    return value
 
+value = hand_value
+
+
+
 def play(p1,com):
    while True:
+      print(f"\nYour hand value is {hand_value(p1)}\n")
+      print(f"Computer's hand: {com} (Value: {hand_value(com)})")
 
-      P1_choice = input("Player1 - Hit or Stand? ")
+      P1_choice = input("Player1 - Hit or Stand? ") 
+
+      if P1_choice.lower().strip() == "stand":
+         break
+
+      if P1_choice.lower().strip() == "hit":
+         p1.append(pile.pop())
+
+      while P1_choice.lower().strip() != "stand" and P1_choice.lower().strip() != "hit":
+         P1_choice = input("Please entre valid input:")
+
+      if "Ace" in p1[0] or "Ace" in p1[1]:
+         if hand_value(p1) > 12:
+            value + 1
+         else:
+            value + 11
+         print("WOOOOW")
+
+      if hand_value(player1) > 21:
+         print("YOU BUST!")
+         break
 
       if hand_value(com) < 17:
-         com.append(pile.pop())
+         computor.append(pile.pop())
 
-      if hand_value(p1) < 21:
-         if P1_choice.lower().strip() == "hit":
-            p1.append(pile.pop())
-   
-      if P1_choice.lower().strip() == "stand":
-         print(f"\nYour hand value is {hand_value(p1)}\n")
-         break
-   
-      if hand_value(p1) > 21:
-         print("You bust!")
-         break
 
-      print(f"Your current hand value is {hand_value(p1)}")
+   
+
 
    return (f"Player1 = {p1},Computor = {com}")
 
 plays = play(player1,computor)
    
-print(plays)
+# print(plays)
+
+def winner():
+   # index = [0,1]
+   # results = []
+   # for i in index:
+   #    if  any player1[index] == "Ace" and isinstance(player1[index],str) or  player1[index] == 10:
+   #    print(f"\nYOU - BLACKJACK!!! \n")
+   if player1[0] == "Ace" and type(player1[1]) == str or  player1[1] == 10:
+      print(f"\nYOU - BLACKJACK!!! \n")
+   if hand_value(computor) == 21 and len(computor) == 2:
+      print(f"\nCOMPUTOR - BLACKJACK!!! \n")
+   if hand_value(player1) > hand_value(computor) and hand_value(player1) < 21:
+      print(f"\nYOU WIN!! \n")
+   if hand_value(player1) < hand_value(computor):
+         print(f"\nYOU LOSE ")
+   if hand_value(player1) == hand_value(computor):
+         print(f"\nPUSH ")
 
 
-def winner(player,computor):
-   if hand_value(player) > hand_value(computor):
-      print(f"")
-   
+winner()
+      
 def main():
     """
 TODO: Blackjack Game Implementation
